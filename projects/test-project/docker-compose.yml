@@ -1,0 +1,23 @@
+version: '3.7'
+services:
+  hello-world-python:
+    image: bozzyphat/hello-world-python:0.0.1.RELEASE
+    ports:
+      - "5000:5000"
+    restart: always
+    networks:
+      - test-hello-world-network
+
+  hello-world-nodejs:
+    image: bozzyphat/hello-world-nodejs:0.0.1.RELEASE
+    ports:
+      - "5001:5000"
+    restart: always
+    depends_on:
+      - hello-world-python
+    networks:
+      - test-hello-world-network
+  
+# Networks to be created to facilitate communication between containers
+networks:
+  test-hello-world-network:
